@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>React.js - a short overview</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>React.js</h1>
+					<p>
+						<small>Created by Viktar Svintsitski</small>
+					</p>
+				</section>
+				<section>
+					<h2>What is React.js?</h2>
+					<p>
+						React.js is a library developed by Facebook
+					</p>
+					<img data-src="https://www.shareaholic.com/blog/wp-content/uploads/2012/05/Facebook-2011.jpg" alt="Facebook 2011">
+					<p>
+						React.js is focused on the view part of MVC pattern
+					</p>
+				</section>
+				<section>
+					<h2>React components</h2>
+					<section>
+						<h3>What is a component?</h3>
+						<p>
+							Class or function
+						</p>
+						<p>
+							Accepts properties
+						</p>
+						<p>
+						Returns a React element
+						</p>
+					</section>
+					<section>
+						<img data-src="https://cdn-images-1.medium.com/max/1600/1*bvQNHjZOXcl-ds9A4AWYVg.png" alt="Google search page components example">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Components and props</h2>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+								class Welcome extends React.Component {
+									render() {
+										return <h1>Hello, {this.props.name}</h1>;
+									}
+								}
+						</code></pre>
+						<ul>
+							<li>Functional components</li>
+							<li>Class components</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Functional components</h3>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+								function Welcome(props) {
+									return <h1>Hello, {props.name}</h1>;
+								}
+						</code></pre>
+						<ul>
+							<li>Are mainly used purely for rendering components</li>
+							<li>Do not have predefined state</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Class components</h3>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+								class Welcome extends React.Component {
+									render() {
+									  return <h1>Hello, {this.props.name}</h1>;
+									}
+								}
+						</code></pre>
+						<ul>
+							<li>ES6 class syntax</li>
+							<li>Do have state that can be accessed and changed</li>
+							<li>Can have a constructor just like javascript classes</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h3>Component lifecycle</h3>
+					<section>
+						<img data-src="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ogimage.201804100050.png" alt="React component lifecycle diagram">
+					</section>
+					<section>
+						<h3>Mounting component</h3>
+							<pre><code class="javascript" data-trim contenteditable style="font-size: 18px; width: 100%;">
+									constructor(props) {
+										super(props);
+										this.state = { counter: 0 };
+										this.handleClick = this.handleClick.bind(this);
+									}
+							</code></pre>
+							<ul>
+								<li>constructor()</li>
+								<li>render()</li>
+								<li>componentDidMount()</li>
+							</ul>
+					</section>
+					<section>
+						<h3>Updating component</h3>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px; width: 100%;">
+							componentDidUpdate(prevProps) {
+								if (this.props.userID !== prevProps.userID) {
+								  this.fetchData(this.props.userID);
+								}
+							}
+						</code></pre>
+						<ul>
+							<li>render()</li>
+							<li>componentDidUpdate()</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Unmounting component</h3>
+						<ul>
+							<li>componentWillUnmount()</li>
+						</ul>
+						<p>This method is invoked immediately before a component is unmounted and destroyed</p>
+					</section>
+				</section>
+				<section>
+					<section>
+					<h2>Virtual DOM</h2>
+					<ul>
+						<li>Virtual DOM is a copy of a real DOM</li>
+						<li>Updating the small parts of a web app without affecting other parts of the UI</li>
+						<li>Updates are performed very quickly</li>
+					</ul>
+						<img data-src="https://www.altexsoft.com/media/2017/05/Real-vs-Virtual-DOM.png" alt="React Virtual DOM">
+					</section>
+				</section>
+				<section>
+					<h2>JSX</h2>
+					<section>
+						<p>
+							JSX is React extension that allows us to write JavaScript that looks like HTML
+						</p>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+								class HelloWorld extends React.Component {
+									render() {
+									return (
+										<h1 className='large'>Hello World</h1>
+									);
+									}
+								}
+						</code></pre>
+					</section>
+					<section>
+						<p>
+							Simple component creation
+						</p>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+								const element = <h1>Hello, World!</h1>;
+						</code></pre>
+						<p>
+							Component creation with properties
+						</p>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+								const name = "Jack";
+								const element = <h1>Hello, {name}</h1>;
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>Event handling</h2>
+					<section>
+						<pre><code class="javascript" data-trim contenteditable style="font-size: 18px; width: 100%;">
+							class CustomComponent extends React.Component {
+								state = { id: null, isLoaded: false };
+								onClick = e => this.setState({ id: e.target.id });
+							
+								render() {
+									return (
+										<div>
+											<button onClick={this.onClick} id={1}>1</button>
+										</div>
+									);
+								}  
+							}
+						</code></pre>
+					</section>
+					<section>
+						<ul>
+							<li>SyntheticEvent</li>
+							<li>Cross-browser wrapper around the browser's native event</li>
+							<li>Has the same interface as the browser’s native event</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h2>React Native</h2>
+					<ul>
+						<li>Javascript framework for iOS and Android</li>
+						<li>Based on ReactJs</li>
+						<li>JSX is used</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Cons of ReactJs</h2>
+					<ol>
+						<li>React is library dependent</li>
+						<li>Easy to learn – hard to master</li>
+						<li>Relatively poor documentation</li>
+					</ol>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
